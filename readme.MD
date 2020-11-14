@@ -23,9 +23,11 @@ Log in to the AWS console and navigate to the **EC2 service** which can be found
 ### Create the key pair
 
 Click on **Key Pairs** which can be found under **Network & Security** in the EC2 Dashboard on the left of the screen.
+
 Click on **Create Key Pair**, specify a name for the key pair, and click **Create**.
 
 ### Confirm download
 
 The key pair will then be saved to the Downloads folder on the Windows machine.
+
 Ensure that a file with the name specified above and an extension of `.pem` exists in this folder.
