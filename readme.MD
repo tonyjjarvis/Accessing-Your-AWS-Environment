@@ -30,13 +30,25 @@ A key pair consists of a public and private key which serves as the security cre
 
 # Convert key format
 
-The key that has just been downloaded is in the `.pem` format, however PuTTY requires keys to be of the `.ppk` type. Follow the steps below to convert the downloaded key to the required file format.
+The key that has just been downloaded will be in the `.pem` format, however PuTTY requires keys to be of the `.ppk` type. Follow the steps below to convert the downloaded key to the required file format.
 
 ### To convert the key format
 
-1. Open PuTTYgen from the Start Menu (**All Programs > PuTTY > PuTTYgen**).
+1. Import the key
+   - Open PuTTYgen from the Start Menu (**All Programs > PuTTY > PuTTYgen**).
    - Click on the **Load** button next to **Load an existing private key file**.
    - By default, PuTTYgen will only show `.ppk` files. Click on the down facing arrow next to **PuTTY Private Key Files (\*.ppk)** and select **All Files (\*.\*)**.
    - Navigate to the Downloads folder and select the key that was downloaded earlier, then click **Open**.
    - A message will appear indicating that PuTTYgen has successfully imported the foreign key, as shown below.
    ![Import notification](/img/PuTTYgen-import-notice.png)
+2. Save the generated key
+   - Click **OK** to close the notification and click the **Save private key** button next to **Save the generated key**.
+   - A warning will be displayed asking if you want to save the key without a passphrase, as shown below.
+     ![Passphrase warning](/img/PuTTYgen-passphrase-warning.png)
+   -  Select **Yes**.
+   > A passphrase for a private key provides an additional layer of security, however this comes at the cost of making automation more difficult as human intervention is required when logging on to instances.
+
+   - Navigate to the location where the key should be stored, provide a name for the key, and click **Save**.
+3. Confirm success
+   - Ensure that the file exists in the location specified with an extension of `.ppk`.
+   - Close PuTTYgen.
