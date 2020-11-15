@@ -28,6 +28,17 @@ Click on **Create Key Pair**, specify a name for the key pair, and click **Creat
 
 ### Confirm download
 
-The key pair will then be saved to the Downloads folder on the Windows machine.
+The key pair will then be saved to the **Downloads** folder on the Windows machine.
 
 Ensure that a file with the name specified above and an extension of `.pem` exists in this folder.
+
+# Convert key format
+
+The key that has just been downloaded is in the `.pem` format, however PuTTY requires keys to be of the `.ppk` type. Follow the steps below to convert the downloaded key to the required file format.
+
+- Open PuTTYgen which can be found in the *Start Menu* > *PuTTY* > *PuTTYgen*.
+- Click on the **Load** button next to 'Load an existing private key file'.
+- By default, PuTTYgen will only show `.ppk` files. Click on the down facing arrow next to 'PuTTY Private Key Files (\*.ppk)' and select 'All Files (\*.\*)'.
+- Navigate to the Downloads folder and select the key that was downloaded earlier, then click **Open**.
+- A message will appear indicating that PuTTYgen has successfully imported the foreign key, as shown below.
+![Import notification](/img/PuTTYgen-import-notice.png)
