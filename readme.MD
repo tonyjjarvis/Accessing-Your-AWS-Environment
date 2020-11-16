@@ -50,5 +50,20 @@ The key that has just been downloaded will be in the `.pem` format, however PuTT
 
    - Navigate to the location where the key should be stored, provide a name for the key, and click **Save**.
 3. Confirm success
-   - Ensure that the file exists in the location specified with an extension of `.ppk`.
+   - Ensure that the file exists in the location specified above with an extension of `.ppk`.
    - Close PuTTYgen.
+
+# Allow inbound SSH access
+
+By default, traffic originating from the Internet is not authorised to access EC2 instances. Security groups provide the means of opening this inbound connectivity.
+
+> Note that either the default security group or a custom security group can be used. Custom security groups can be applied to only the specific instances requiring SSH connectivity. For brevity, it is assumed that a security group has already been created. For more details regarding security groups, consult the official AWS documentation detailing [Amazon EC2 security groups for Linux instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html).
+
+### To enable inbound SSH access
+
+1. From the Amazon EC2 console, select **Instances**. Select the relevant instance and note the **Description** tab. The **Security groups** section will show the specific security groups associated with this instance. Select **view inbound rules** to see the inbound rules currently enabled.
+2. Select **Security Groups** from the navigation pane, and select the security group noted in the previous step.
+3. Select **Edit** under the **Inbound** tab, which can be found in the details pane.
+4. Choose **Add Rule** and set the **Type** to be **SSH**.
+5. In the **Source** field, select the IP protocol to allow (either IPv4 or IPv6) and specify either a specific IP address or an address range. If the address is unknown, a value of `0.0.0.0/0` can be used to allow all IP addresses.
+6. Click **Save**.
