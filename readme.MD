@@ -14,13 +14,12 @@ The following will be required:
 
 A key pair consists of a public and private key which serves as the security credentials used to authenticate your identity when connecting to an instance.
 
-> **Note:** Key pairs are specific to a given region. This guide demonstrates how to create a key pair for the **us-east-1** region. You will need to ensure that each region requiring connectivity will have its own key pairs created.
+> **Note:** Key pairs are specific to a given region. You will need to ensure that each region requiring connectivity will have its own key pairs created.
 
 ### To create a key pair
 
 1. Access the AWS Console
    - Log in to the AWS console and navigate to the **EC2 service** which can be found under **Compute**.
- Create the key pair
 2. Generate the keys
    - Click on **Key Pairs** which can be found under **Network & Security** in the EC2 Dashboard on the left of the screen.
    -  Click on **Create Key Pair**, specify a name for the key pair, and click **Create**.
@@ -47,7 +46,6 @@ The key that has just been downloaded will be in the `.pem` format, however PuTT
      ![Passphrase warning](/img/PuTTYgen-passphrase-warning.png)
    -  Select **Yes**.
    > A passphrase for a private key provides an additional layer of security, however this comes at the cost of making automation more difficult as human intervention is required when logging on to instances.
-
    - Navigate to the location where the key should be stored, provide a name for the key, and click **Save**.
 3. Confirm success
    - Ensure that the file exists in the location specified above with an extension of `.ppk`.
@@ -67,3 +65,25 @@ By default, traffic originating from the Internet is not authorised to access EC
 4. Choose **Add Rule** and set the **Type** to be **SSH**.
 5. In the **Source** field, select the IP protocol to allow (either IPv4 or IPv6) and specify either a specific IP address or an address range. If the address is unknown, a value of `0.0.0.0/0` can be used to allow all IP addresses.
 6. Click **Save**.
+
+# Connect to the instance
+
+By default, traffic originating from the Internet is not authorised to access EC2 instances. Security groups provide the means of opening this inbound connectivity.
+
+1. Load the authentication key
+   - Open PuTTY from the Start Menu (**All Programs > PuTTY > PuTTY**).
+   - In the **Category** pane, select **SSH**.
+   - Select **Auth**.
+   - Click on the **Browse** button under **Private key for authentication**.
+   - Select the private key of type `.ppk` that was generated above and choose **Open**.
+2. Configure session details
+   - In the **Category** pane, select **Session**.
+   - Ensure that **Connection type** is set to **SSH**.
+   - Enter the following details in the **Host Name (or IP address)**:
+      - If using the public DNS name, enter `my-instance-user-name@my-instance-public-dns-name`.
+      - If using the IP address, enter `my-instance-user-name`@`my-instance-IPv6-address`.
+       > For details regarding getting information about your instance, refer to the official AWS documentation covering [General prerequisites for connecting to your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-get-info-about-instance).
+3. Connect to the instance
+   - Provide a name for the session under **Saved Sessions**.
+   - Click on the **Save** button to save the session for future use.
+   - Click **Open**. 
