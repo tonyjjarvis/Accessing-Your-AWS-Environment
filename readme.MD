@@ -81,9 +81,41 @@ By default, traffic originating from the Internet is not authorised to access EC
    - Ensure that **Connection type** is set to **SSH**.
    - Enter the following details in the **Host Name (or IP address)**:
       - If using the public DNS name, enter `my-instance-user-name@my-instance-public-dns-name`.
-      - If using the IP address, enter `my-instance-user-name`@`my-instance-IPv6-address`.
-       > For details regarding getting information about your instance, refer to the official AWS documentation covering [General prerequisites for connecting to your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-get-info-about-instance).
+      - If using the IP address, enter `my-instance-user-name@my-instance-IPv6-address`.
+   > For details regarding getting information about your instance, refer to the official AWS documentation covering [General prerequisites for connecting to your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-get-info-about-instance).
 3. Connect to the instance
    - Provide a name for the session under **Saved Sessions**.
    - Click on the **Save** button to save the session for future use.
    - Click **Open**. 
+  4. Verify details
+     - If this is the first time you are connecting to the instance, PuTTY will display a security alert asking whether the host should be trusted.
+     > For additional security, you can optionally verify that the fingerprint in the dialog box matches the fingerprint of the instance being connected to. This can be obtained by referring to the [(Optional) Get the instance fingerprint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-get-info-about-instance) documentation. 
+     - Choose **Yes**.
+
+# Next steps
+
+The above process will enable access to the AWS EC2 CLI. Once you're in the CLI, you will need to have valid user-level permissions to run specific commands. For example, if a user tried to create an S3 bucket without the necessary permissions, the following message would be received.
+
+```
+[root@ip-<IP address> ec2-user]# aws s3 mb s3://<bucket name>
+make_bucket failed: s3://<bucket name> Unable to locate credentials
+```
+
+There are two methods available to supply the necessary permissions required above:
+
+ 1. Provide credentials of a user already configured in IAM
+ 2. Use roles
+
+> The first option above can impact the security of your AWS environment, as a successful compromise of an individual instance would provide an attacker with credentials that can be used across other instances. For this reason, it is recommended to use roles, which use temporary keys as needed.
+
+Details for configuring roles can be obtained by referring to the [Use temporary security credentials (IAM roles) instead of long-term access keys](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html#use-roles) documentation.
+
+# Additional documentation
+
+Please refer to the below documentation for additional information:
+- [General prerequisites for connecting to your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html)
+- [Connecting to your Linux instance from Windows using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html)
+- [Authorizing inbound traffic for your  Linux  instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html)
+- [Amazon EC2 security groups for  Linux  instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
+- [Best practices for managing AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html)
+- [Troubleshooting connecting to your instance](Troubleshooting%20connecting%20to%20your%20instance)
